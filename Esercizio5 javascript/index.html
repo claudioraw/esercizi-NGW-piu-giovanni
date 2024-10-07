@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+    </head>
+    <body>
+        <header>
+            <h1>Esercizio 5</h1>
+        </header>
+        <main>
+        
+        </main>
+        <footer>
+       
+        </footer>
+        <script>
+            const listaDellaSpesa = {};
+
+            function aggiungiElemento() {
+                let elemento = prompt("Inserisci l'elemento da aggiungere:");
+                let quantita = parseInt(prompt("Inserisci la quantita':"), 10);
+
+                // Aggiungi o aggiorna l'elemento nel dizionario
+                if (listaDellaSpesa[elemento]) {
+                    // Se l'elemento esiste già, decido di incrementare la quantità
+                    listaDellaSpesa[elemento] += quantita;
+                } else {
+                    listaDellaSpesa[elemento] = quantita;
+                }
+
+                alert(`${quantita} ${elemento} aggiunti alla lista della spesa.`);
+                console.log(`${quantita} ${elemento} aggiunti alla lista della spesa.`);
+                console.log("Stato attuale della lista:", listaDellaSpesa);
+            }
+
+            function rimuoviElemento() {
+                let elemento = prompt("Inserisci l'elemento da rimuovere:");
+
+                if (listaDellaSpesa[elemento]) {
+                    delete listaDellaSpesa[elemento];
+                    alert(`${elemento} rimosso dalla lista della spesa.`);
+                    console.log(`${elemento} rimosso dalla lista della spesa.`);
+                } else {
+                    alert(`${elemento} non è presente nella lista.`);
+                    console.log(`${elemento} non è presente nella lista.`);
+                }
+                console.log("Stato attuale della lista:", listaDellaSpesa);
+            }
+
+            function visualizzaLista() {
+                let lista = "Lista della spesa:\n";
+                // Itera su ogni elemento nel dizionario e costruisci una stringa
+                for (let elemento in listaDellaSpesa) {
+                    lista += `${elemento}: ${listaDellaSpesa[elemento]}\n`;
+                }
+                alert(lista);
+                console.log("Lista della spesa visualizzata:", listaDellaSpesa);
+            }
+
+            function gestioneListaSpesa() {
+                let scelta;
+
+                do {
+                    scelta = prompt("Cosa vuoi fare?\n1. Aggiungere un elemento\n2. Rimuovere un elemento\n3. Visualizzare la lista\n4. Uscire");
+
+                    switch (scelta) {
+                        case '1':
+                            aggiungiElemento();
+                            break;
+                        case '2':
+                            rimuoviElemento();
+                            break;
+                        case '3':
+                            visualizzaLista();
+                            break;
+                        case '4':
+                            alert("Uscendo dalla gestione della lista della spesa.");
+                            console.log("Uscita dalla gestione della lista della spesa.");
+                            break;
+                        default:
+                            alert("Scelta non valida. Riprova.");
+                            console.log("Scelta non valida.");
+                    }
+                } while (scelta !== '4');
+            }
+
+            gestioneListaSpesa();
+        </script>
+    </body>
+</html>
