@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #054781;
+            color: #b8ed0a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            color: #556d08;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: #03f9e9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            transition: all 0.3s ease;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+            color: #556d08;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #556d08;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #b8ed0a;
+            outline: none;
+        }
+
+        button {
+            background-color: #b8ed0a;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #b8ed0a;
+        }
+
+        .error {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #welcomeMessage {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            background: #b2ebf2;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #userData {
+            list-style-type: none;
+            padding: 0;
+            color: #b8ed0a;
+        }
+
+        #userData li {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <form id="registrationForm">
+        <h1>Registrazione</h1>
+        <label for="nome">Name:</label>
+        <input type="text" id="nome" required>
+
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Conferma registrazione</button>
+        <p class="error" id="error"></p>
+    </form>
+
+    <div id="welcomeMessage">
+        <h1>Registrazione avvenuta con successo... Benvenuto!</h1>
+        <ul id="userData"></ul>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('email').value.trim();
+            const nome = document.getElementById('nome').value.trim();
+            const cognome = document.getElementById('cognome').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error');
+            const userData = document.getElementById('userData');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+
+            errorMessage.textContent = '';
+
+            if (!email || !nome || !cognome || !password) {
+                errorMessage.textContent = 'Non sono ammessi campi vuoti';
+                return;
+            }
+
+            userData.innerHTML = `
+                <li>Email: ${email}</li>
+                <li>Nome: ${nome}</li>
+                <li>Cognome: ${cognome}</li>
+            `;
+            welcomeMessage.style.display = 'block';
+
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
