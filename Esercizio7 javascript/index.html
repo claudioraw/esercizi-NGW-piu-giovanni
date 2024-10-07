@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        main {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #00796b;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #004d40;
+            outline: none;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Puoi aggiungere qui un logo o un titolo -->
+    </header>
+    <main>
+        <h2>Accesso</h2>
+        <input type="text" id="campo-login" placeholder="Nome" />
+        <input type="password" id="password-login" placeholder="Password" />
+        <button onclick="accedi_dash()">Entra nel sito</button>
+    </main>
+    <footer>
+        <!-- Puoi aggiungere qui altre informazioni o link -->
+    </footer>
+    <script>
+        function accedi_dash() {
+            let input = document.getElementById("campo-login").value;
+            let input_pass = document.getElementById("password-login").value;
+
+            const utente = {
+                username: input,
+                password: input_pass,
+            };
+            if (input != "") {
+                localStorage.setItem("utente", JSON.stringify(utente));
+                window.location.href = "dashboard.html";
+            }
+        }
+    </script>
+</body>
+</html>

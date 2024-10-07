@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theMealDB</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: auto;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background-color: #00796b;
+            color: white;
+            font-size: 24px;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+            transform: translateY(-2px);
+        }
+
+        section {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .piatto-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .piatto-card:hover {
+            transform: scale(1.02);
+        }
+
+        .piatto-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .piatto-card h3 {
+            margin: 10px 0;
+            color: #00796b;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+    <script>
+        if(localStorage.getItem("utente") == null) {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        Benvenuto a theMealDB
+    </header>
+    <main>
+        <h2>Benvenuto nel sito, <span id="nome-utente">X</span></h2>
+        <button onclick="richiesta_async()">Ricerca piatti</button>
+        <section id="sezione-piatti"></section>
+    </main>
+    <footer>
+        <button onclick="logout_to_index()">Logout</button>
+    </footer>
+    <script>
+        function logout_to_index() {
+            localStorage.removeItem("utente");
+            window.location.href = "index.html";
+        }
+
+        let utente = JSON.parse(localStorage.getItem("utente"));
+        document.getElementById("nome-utente").innerHTML = utente.username;
+
+        function crea_card_piatti(lista_di_piatti) {
+            console.log("Query con risultati: " + lista_di_piatti.length);
+            document.getElementById("sezione-piatti").innerHTML = "";
+
+            for (let i = 0; i < lista_di_piatti.length; i++) {
+                let div = document.createElement("div");
+                div.className = "piatto-card";
+
+                let NomePiatto = document.createElement("h3");
+                NomePiatto.innerHTML = lista_di_piatti[i].strMeal;
+
+                let imgPiatto = document.createElement("img");
+                imgPiatto.src = lista_di_piatti[i].strMealThumb;
+
+                let piatto = document.createElement("p");
+                piatto.innerHTML = lista_di_piatti[i].strInstructions;
+
+                div.appendChild(NomePiatto);
+                div.appendChild(imgPiatto);
+                div.appendChild(piatto);
+
+                document.getElementById("sezione-piatti").appendChild(div);
+            }
+        }
+
+        async function richiesta_async() {
+            let input = prompt("Digita qui il nome del piatto che desideri cercare");
+            let risposta = await fetch(
+                `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`
+            );
+
+            let lista_piatti = await risposta.json();
+            console.log(lista_piatti.meals);
+            crea_card_piatti(lista_piatti.meals);
+        }
+    </script>
+</body>
+</html>
