@@ -1,0 +1,22 @@
+.app-container {
+    display: flex;
+    flex-direction: column; /* Colonna per le card e il counter */
+    align-items: flex-start; /* Allinea a sinistra */
+    padding: 20px; /* Spazio interno al contenitore principale */
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: space-between; /* Spazio uniforme tra le card */
+    gap: 10px; 
+    flex-wrap: wrap; /* Permette di andare a capo se necessario */
+    width: 100%; /* Occupare tutta la larghezza */
+}
+
+.counter-container {
+    width: 50%; /* Occupare metà della larghezza */
+    margin-top: 20px; /* Margine sopra il counter */
+    display: flex;
+    justify-content: center; /* Centra il contenuto */
+}

@@ -1,0 +1,32 @@
+.card {
+    background-color: #fafafa;
+    border: 2px solid #050000; 
+    border-radius: 20px; 
+    padding: 20px;
+    max-width: 300px;
+    flex: 1; 
+    margin: 10px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.card .head {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    gap: 10px;
+}
+
+.card .head .title h3 {
+    margin: 0; 
+    font-size: 24px;
+    text-align: center;
+}
+
+.card .description p {
+    margin: 0; 
+    font-size: 18px; 
+    text-align: center; 
+}

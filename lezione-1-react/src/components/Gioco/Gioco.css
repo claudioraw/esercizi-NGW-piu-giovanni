@@ -1,0 +1,70 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fafafa; 
+    border: 2px solid #050000; 
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .layout {
+    display: flex;
+    justify-content: center; 
+  }
+  
+  .scelte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+  }
+  
+  .card {
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100px;
+  }
+  
+  .card:hover {
+    background-color: #000000;
+    color: white;
+  }
+  
+  .risultati {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .scelta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .scelta-valori {
+    display: flex;
+    align-items: center;
+  }
+  
+  .vs {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 20px; 
+  }
+  
+  .risultato {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000204;
+  }
+  
