@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veicoli</title>
+</head>
+<body>
+    <h1>Descrizione dei Veicoli</h1>
+    <pre id="output"></pre>
+    <script src="veicolo.js"></script>
+    <script>
+        const outputElement = document.getElementById('output');
+        outputElement.textContent = miaAuto.descriviAuto() + '\n' + miaMoto.descriviMoto();
+    </script>
+</body>
+</html>
